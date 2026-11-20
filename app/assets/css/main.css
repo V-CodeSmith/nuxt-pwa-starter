@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Keep these in sync with THEME_COLOR / BACKGROUND_COLOR in nuxt.config.ts */
+    --color-brand: #4f46e5;
+    --color-brand-emphasis: #4338ca;
+    --color-brand-foreground: #ffffff;
+
+    --color-surface: #ffffff;
+    --color-surface-muted: #f1f5f9;
+    --color-surface-border: #e2e8f0;
+
+    --color-content: #0f172a;
+    --color-content-muted: #64748b;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-brand: #818cf8;
+      --color-brand-emphasis: #a5b4fc;
+      --color-brand-foreground: #1e1b4b;
+
+      --color-surface: #0f172a;
+      --color-surface-muted: #1e293b;
+      --color-surface-border: #334155;
+
+      --color-content: #e2e8f0;
+      --color-content-muted: #94a3b8;
+    }
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-muted font-sans text-content antialiased;
+    min-height: 100dvh;
+  }
+
+  /* Respect mobile safe areas (installed PWA on iOS/Android). */
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
