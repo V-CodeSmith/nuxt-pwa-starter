@@ -88,7 +88,7 @@ const { installDismissed, updateDismissed, dismissInstall, dismissUpdate, resetD
 | Styling     | [Tailwind CSS](https://tailwindcss.com) 3.4                              | via `@nuxtjs/tailwindcss`, CSS-variable theming      |
 | Language    | TypeScript 5.9                                                           | `strict: true`, `noUncheckedIndexedAccess`           |
 | Lint/format | ESLint 10 flat config + Prettier 3                                       | `@nuxt/eslint-config`, `prettier-plugin-tailwindcss` |
-| CI          | GitHub Actions                                                           | Node 20, `npm ci`, lint, typecheck, build            |
+| CI          | GitHub Actions                                                           | Node 22, `npm ci`, lint, typecheck, build            |
 
 ## Project structure
 
@@ -116,7 +116,7 @@ nuxt-pwa-starter/
 │  └─ icons/                          # icon-192x192, icon-512x512, maskable, apple-touch
 │     └─ README.md
 ├─ .github/workflows/ci.yml
-├─ .nvmrc                             # Node 20
+├─ .nvmrc                             # Node 22
 ├─ eslint.config.mjs
 ├─ .prettierrc
 ├─ nuxt.config.ts                     # modules + full `pwa` block
@@ -130,7 +130,10 @@ Generated at build time (git-ignored): `.output/`, `.nuxt/`, `public/sw.js`,
 
 ## Getting started
 
-Requirements: **Node 20+** (`nvm use` picks up `.nvmrc`) and npm 10+.
+Requirements: **Node 22.12+** (`nvm use` picks up `.nvmrc`) and npm 10+.
+
+Node 20 is not supported: the PWA toolchain imports `findPackageJSON` from `node:module`,
+which only exists from Node 22.12 onward, so `nuxt prepare` fails during `npm install`.
 
 ```bash
 # install dependencies (runs `nuxt prepare` for types)
